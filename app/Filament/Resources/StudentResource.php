@@ -6,6 +6,9 @@ use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Models\Student;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -23,7 +26,18 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Card::make()
+                    ->schema([
+                        TextInput::make('nim')->required(),
+                        TextInput::make('nama')->required(),
+                        Select::make('fakultas')
+                            ->options([
+                                'FIK' => 'FIK',
+                                'MIPA' => 'MIPA',
+                                'SOSHUM' => 'SOSHUM',
+                            ]),
+                    ])
+                    ->columns(2),
             ]);
     }
 
