@@ -29,7 +29,8 @@ class StudentResource extends Resource
             ->schema([
                 Card::make()
                     ->schema([
-                        TextInput::make('nim')->required()->unique(),
+                        TextInput::make('nim')->required()->unique(ignorable: fn
+                        ($record) => $record),
                         TextInput::make('nama')->required(),
                         Select::make('fakultas')
                             ->options([
